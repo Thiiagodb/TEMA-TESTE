@@ -53,7 +53,7 @@
   {%- endif -%}
 
   <div {% unless section.settings.edge_to_edge %}class="container container--flush"{% endunless %}>
-    <div class="slideshow slideshow--{{ section.settings.section_size | replace: '_', '-' }} {% if section.settings.edge_to_edge %}slideshow--edge2edge{% endif %}" style="color: {{ section.blocks.first.settings.text_color }}">
+    <div class="slideshow slideshow--{{ section.settings.section_size | replace: '_', '-' }} {% if section.settings.edge_to_edge %}slideshow--edge2edge{% endif %} {% if settings.slideshow_parallax %}slideshow--parallax{% endif %}" style="color: {{ section.blocks.first.settings.text_color }}">
       {%- for block in section.blocks -%}
         {%- if block.settings.mobile_image -%}
           {%- capture mobile_size -%}{{ block.settings.mobile_image.width | at_most: 600 }}x{{ block.settings.mobile_image.height | at_most: 800 }}{%- endcapture -%}
@@ -105,15 +105,15 @@
 
             {%- capture slide_content -%}
               {%- if block.settings.title != blank -%}
-                <h2 class="slideshow__title heading h1">{{ block.settings.title | escape }}</h2>
+                <h2 class="slideshow__title heading h1 slideshow__title--animated">{{ block.settings.title | escape }}</h2>
               {%- endif -%}
 
               {%- if block.settings.content != blank -%}
-                <p class="slideshow__content">{{ block.settings.content | escape | newline_to_br }}</p>
+                <p class="slideshow__content slideshow__content--animated">{{ block.settings.content | escape | newline_to_br }}</p>
               {%- endif -%}
 
               {%- if block.settings.link != blank and block.settings.button_text != blank -%}
-                <a href="{{ block.settings.link }}" class="slideshow__button button">{{ block.settings.button_text | escape }}</a>
+                <a href="{{ block.settings.link }}" class="slideshow__button button slideshow__button--animated">{{ block.settings.button_text | escape }}</a>
               {%- endif -%}
             {%- endcapture -%}
 
@@ -134,13 +134,20 @@
             #block-{{ block.id }} .button {
               color: {{ block.settings.button_text_color }};
               background: {{ block.settings.button_background }};
+              transition: background var(--duration-normal) var(--ease-in-out), box-shadow var(--duration-normal) var(--ease-in-out), transform var(--duration-fast) var(--ease-out-cubic);
             }
 
             #block-{{ block.id }} .button:hover {
               background: {{ block.settings.button_background | color_modify: 'alpha', 0.8 }};
+              box-shadow: var(--shadow-md);
+              transform: translateY(-1px);
             }
 
-            {%- if block.settings.show_overlay -%}
+            #block-{{ block.id }} .button:active {
+              transform: scale(0.97);
+            }
+
+            {%- if block.settings.show_overlay or settings.slideshow_darken_overlay -%}
               #block-{{ block.id }}.slideshow__slide--overlay::before {
                 {%- assign overlay_opacity = block.settings.overlay_opacity | divided_by: 100.0 -%}
                 background: linear-gradient(to bottom, rgba(0, 0, 0, 0), {{ '#000000' | color_modify: 'alpha', overlay_opacity }});
