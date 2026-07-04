@@ -11,9 +11,9 @@
 <footer class="footer" data-section-id="{{ section.id }}" data-section-type="footer" role="contentinfo">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
   <div class="container">
     <div class="footer__wrapper">
-      
+
       {%- if section.blocks.size > 0 -%}
-        <div class="footer__block-list">          
+        <div class="footer__block-list" style="gap: var(--spacing-2xl);">
           {%- for block in section.blocks -%}
             {%- case block.type -%}
               {%- when 'text' -%}
@@ -154,13 +154,13 @@
         {%- endif -%}
 
         <div class="footer__aside-item footer__aside-item--copyright hidden-lap-and-up">
-          <p style="margin: 0">© {{ shop.name }}</p> {{ section.settings.cnpjaqui }}
-        </div>    
+          <p style="margin: 0; opacity: var(--opacity-70);">© {{ shop.name }}</p> {{ section.settings.cnpjaqui }}
+        </div>
 
         <div class="footer__aside-item footer__aside-item--localization">
 
-          <div style="align-items: center; display: flex; gap: 6px" class="hidden-pocket">
-          <p style="margin: 0">© {{ shop.name }}</p> | {{ section.settings.cnpjaqui }}
+          <div style="align-items: center; display: flex; gap: var(--spacing-xs);" class="hidden-pocket">
+          <p style="margin: 0; opacity: var(--opacity-70);">© {{ shop.name }}</p> | {{ section.settings.cnpjaqui }}
           </div>
 
           <!-- LISTA 1 
@@ -209,10 +209,10 @@
               display: flex;
               flex-direction: column;
               align-items: center;
-              margin-bottom: 48px;
+              margin-bottom: var(--spacing-4xl);
             }
           }
-          
+
         </style>
       </div>
           {%- endif -%}
@@ -271,40 +271,57 @@
         </center>
 
           <style>
-
             .selos-align {
               display: flex;
               flex-direction: row;
               align-items: center;
+              gap: var(--spacing-sm);
             }
-            
+
             .reclameaqui-logo {
-              margin: 0 15px 0 15px;
               height: 24px;
               max-width: max-content;
+              opacity: var(--opacity-80);
+              transition: opacity var(--duration-fast) var(--ease-in-out);
+            }
+
+            .reclameaqui-logo:hover {
+              opacity: 1;
             }
 
             .google-logo {
               height: 40px;
               max-width: max-content;
+              opacity: var(--opacity-80);
+              transition: opacity var(--duration-fast) var(--ease-in-out);
+            }
+
+            .google-logo:hover {
+              opacity: 1;
             }
 
             .norton-logo {
               height: 40px;
               max-width: max-content;
+              opacity: var(--opacity-80);
+              transition: opacity var(--duration-fast) var(--ease-in-out);
+            }
+
+            .norton-logo:hover {
+              opacity: 1;
             }
 
             @media (max-width: 640px){
-
              .selos-align {
                display: flex;
                flex-direction: row;
-               justify-content: space-between;
+               justify-content: center;
                align-items: center;
+               flex-wrap: wrap;
+               gap: var(--spacing-xs);
              }
-              
+
              .reclameaqui-logo {
-               margin: 6px 15px 0 15px;
                height: 18px;
                max-width: max-content;
              }
@@ -319,7 +336,7 @@
                max-width: max-content;
              }
             }
-            
+
           </style>
           
         </div>
