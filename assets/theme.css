@@ -14342,3 +14342,78 @@ input.qtyminus {
   box-shadow: var(--shadow-md) !important;
   transform: translateY(-1px) !important;
 }
+
+/* ===== PLACEHOLDER MODERNIZADO ===== */
+
+.placeholder-svg,
+.placeholder-svg svg,
+.blog-sidebar__post-placeholder,
+.product-item__image-wrapper .placeholder-svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: var(--radius-md);
+  min-height: 200px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.placeholder-svg::after,
+.blog-sidebar__post-placeholder::after,
+.product-item__image-wrapper .placeholder-svg::after {
+  content: "📦 Em breve";
+  position: absolute;
+  bottom: var(--spacing-md);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.06);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-xs);
+  color: #868e96;
+  font-weight: 500;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.placeholder-svg svg,
+.blog-sidebar__post-placeholder svg {
+  opacity: 0.15;
+  width: 60px;
+  height: 60px;
+}
+
+/* Placeholder de coleção */
+.collection-list__item .placeholder-svg {
+  min-height: 250px;
+  border-radius: var(--radius-lg);
+}
+
+.collection-list__item .placeholder-svg::after {
+  content: "📁 Nova coleção";
+}
+
+/* Placeholder de post */
+.blog-sidebar__post-placeholder {
+  min-height: 120px;
+  border-radius: var(--radius-sm);
+}
+
+.blog-sidebar__post-placeholder::after {
+  content: "📝 Em breve";
+  bottom: var(--spacing-xs);
+  font-size: 10px;
+}
+
+/* Placeholder de produto */
+.product-item__image-wrapper .placeholder-svg {
+  min-height: 180px;
+}
+
+.product-item__image-wrapper .placeholder-svg::after {
+  content: "✨ Novo produto";
+  bottom: var(--spacing-xs);
+  font-size: 10px;
+}
